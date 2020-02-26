@@ -40,7 +40,12 @@
                     <ul class="navbar-nav ml-auto">
 
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('cart.index') }}">Cart</a>
+                        <a class="nav-link" href="{{ route('cart.index') }}">
+                            <div class="badge badge-danger">
+                                {{ Cart::session(auth()->id())->getContent()->count() }}
+                            </div>
+                             Cart
+                        </a>
                         </li>
 
                         <!-- Authentication Links -->
