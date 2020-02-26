@@ -20,3 +20,5 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/add-to-cart/{product}', 'CartController@add')->name('cart.add')->middleware('auth');
 
 Route::get('/cart', 'CartController@index')->name('cart.index')->middleware('auth');
+
+Route::get('/cart/remove/{itemId}', 'CartController@destroy')->name('cart.destroy')->middleware('auth');

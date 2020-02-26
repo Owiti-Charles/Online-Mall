@@ -17,7 +17,7 @@ class CartController extends Controller
             'id' => uniqid($product->id),
             'name' => $product->name,
             'price' => $product->price,
-            'quantity' => 4,
+            'quantity' => 1,
             'attributes' => array(),
             'associatedModel' => $product
         ));
@@ -26,6 +26,12 @@ class CartController extends Controller
     }
 
     public function index(){
-        return view('cart.index');
+        $cartItems = \Cart::session(auth()->id())->getContent();
+        return view('cart.index', compact('cartItems'));
+    }
+
+    public function destroy($itemId){
+        \Cart::session(auth()->id())->remove($itemId);
+        return back();
     }
 }
