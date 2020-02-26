@@ -30,6 +30,16 @@ class CartController extends Controller
         return view('cart.index', compact('cartItems'));
     }
 
+    public function update($rowId){
+        \Cart::session(auth()->id())->update($rowId,[
+            'quantity' =>array(
+                'relative' => false,
+                'value' => request('quantity')
+            ),
+        ]);
+        return back();
+    }
+
     public function destroy($itemId){
         \Cart::session(auth()->id())->remove($itemId);
         return back();
