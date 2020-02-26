@@ -13,6 +13,7 @@
     <script src="{{ asset('js/app.js') }}" defer></script>
 
     <!-- Fonts -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
 
@@ -40,11 +41,12 @@
                     <ul class="navbar-nav ml-auto">
 
                         <li class="nav-item">
-                        <a class="nav-link" href="{{ route('cart.index') }}">
-                            <div class="badge badge-danger">
+                        <a class="nav-link " href="{{ route('cart.index') }}">
+                            <div class="badge badge-danger p-1">
                                 {{ Cart::session(auth()->id())->getContent()->count() }}
                             </div>
-                             Cart
+                            <i class="fa fa-shopping-cart text-success" aria-hidden="true" style="font-size:20px"></i>
+
                         </a>
                         </li>
 
