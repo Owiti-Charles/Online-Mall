@@ -91,7 +91,7 @@ class OrderController extends Controller
 
             \Cart::session(auth()->id())->clear();
 
-            return "Thanks for shopping with us, \n Your order was placed successfully.";
+            return redirect()->route('home')->withMessage("Thanks for shopping with us, \n Your order was placed successfully.");
 
         // dd('order created successfully', $order);
     }
