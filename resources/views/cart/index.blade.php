@@ -39,5 +39,5 @@
            Total Cost : Ksh. {{ Cart::session(auth()->id())->getSubTotal() }}
         </h3>
 
-        <a class="btn btn-primary" href="#" role="button">Checkout</a>
+    <a class="btn btn-primary" href="{{ route('cart.checkout') }}" role="button">Checkout</a>
 @endsection

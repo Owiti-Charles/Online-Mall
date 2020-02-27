@@ -25,3 +25,5 @@ Route::get('/cart/remove/{itemId}', 'CartController@destroy')->name('cart.destro
 
 Route::get('/cart/update/{itemId}', 'CartController@update')->name('cart.update')->middleware('auth');
 
+Route::get('/cart/checkout', 'CartController@checkout')->name('cart.checkout')->middleware('auth');
+
