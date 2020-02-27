@@ -62,12 +62,22 @@ class OrderController extends Controller
             $order->billing_address = $request->input('shipping_address');
             $order->billing_phone = $request->input('shipping_phone');
         }
+        else{
+            $order->billing_fullname = $request->input('billing_fullname');
+            $order->billing_state = $request->input('billing_state');
+            $order->billing_city = $request->input('billing_city');
+            $order->billing_zipcode = $request->input('billing_zipcode');
+            $order->billing_address = $request->input('billing_address');
+            $order->billing_phone = $request->input('billing_phone');
+        }
 
         $order->user_id = auth()->id();
         $order->grand_total = \Cart::session(auth()->id())->getSubTotal();
         $order->item_count = \Cart::session(auth()->id())->getContent()->count();
 
         $order->save();
+
+        dd('order created successfully', $order);
     }
 
     /**
