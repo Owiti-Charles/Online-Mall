@@ -7,6 +7,6 @@ use Illuminate\Database\Eloquent\Model;
 class Order extends Model
 {
     public function items(){
-        return $this->belongsTo(Product::class, 'order_items', 'order_id', 'product_id');
+        return $this->belongsToMany(Product::class, 'order_items','order_id','product_id')->withPivot('quantity','price');
     }
 }
