@@ -35,7 +35,39 @@ class OrderController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // dd($request->all());
+        $request->validate([
+            'shipping_fullname' => 'required',
+            'shipping_state' => 'required',
+            'shipping_city' => 'required',
+            'shipping_zipcode' => 'required',
+            'shipping_address' => 'required',
+            'shipping_phone' => 'required',
+
+        ]);
+        $order = new Order();
+        $order->order_number = uniqid('OrderNumber- ');
+        $order->shipping_fullname = $request->input('shipping_fullname');
+        $order->shipping_state = $request->input('shipping_state');
+        $order->shipping_city = $request->input('shipping_city');
+        $order->shipping_zipcode = $request->input('shipping_zipcode');
+        $order->shipping_address = $request->input('shipping_address');
+        $order->shipping_phone = $request->input('shipping_phone');
+
+        if(!$request->has('billing_fullname')){
+            $order->billing_fullname = $request->input('shipping_fullname');
+            $order->billing_state = $request->input('shipping_state');
+            $order->billing_city = $request->input('shipping_city');
+            $order->billing_zipcode = $request->input('shipping_zipcode');
+            $order->billing_address = $request->input('shipping_address');
+            $order->billing_phone = $request->input('shipping_phone');
+        }
+
+        $order->user_id = auth()->id();
+        $order->grand_total = \Cart::session(auth()->id())->getSubTotal();
+        $order->item_count = \Cart::session(auth()->id())->getContent()->count();
+
+        $order->save();
     }
 
     /**

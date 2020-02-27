@@ -20,7 +20,7 @@
 
     <div class="form-group">
 
-        <label for="">State</label>
+        <label for="">County</label>
 
         <input type="text" name="shipping_state" id="" class="form-control">
 
