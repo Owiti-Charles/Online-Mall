@@ -9,18 +9,7 @@ class PaypalController extends Controller
 {
     public function getExpressCheckout(){
         $cart = \Cart::session(auth()->id());
-        // $cartItems =[
-        //     [
-        //         'name' => 'product 1',
-        //         'price' => 9.99,
-        //         'qty' => 1,
-        //     ],
-        //     [
-        //         'name' => 'product 2',
-        //         'price' => 4.99,
-        //         'qty' => 2,
-        //     ],
-        // ];
+
         $cartItems = array_map(function($item){
             return [
                 'name' => $item['name'],
@@ -28,8 +17,6 @@ class PaypalController extends Controller
                 'qty' => $item['quantity']
             ];
         },$cart->getContent()->toarray());
-
-        dd($cartItems);
 
         $checkoutData = [
             'items' => $cartItems,
@@ -44,6 +31,8 @@ class PaypalController extends Controller
         $provider = new ExpressCheckout();
 
         $response = $provider->setExpressCheckout($checkoutData);
+
+        dd($response);
     }
 
     public function cancelPage(){
