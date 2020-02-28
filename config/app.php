@@ -1,5 +1,8 @@
 <?php
 
+use Srmklive\PayPal\Facades\PayPal;
+use Srmklive\PayPal\Providers\PayPalServiceProvider;
+
 return [
 
     /*
@@ -174,6 +177,7 @@ return [
         // App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
+        Srmklive\PayPal\Providers\PayPalServiceProvider::class,
 
     ],
 
@@ -225,6 +229,7 @@ return [
         'URL' => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
+        'PayPal' => Srmklive\PayPal\Facades\PayPal::class,
 
     ],
 
