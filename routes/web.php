@@ -11,6 +11,8 @@
 |
 */
 
+use Illuminate\Routing\Route;
+
 Route::redirect('/', '/home');
 
 Auth::routes();
@@ -28,4 +30,9 @@ Route::get('/cart/update/{itemId}', 'CartController@update')->name('cart.update'
 Route::get('/cart/checkout', 'CartController@checkout')->name('cart.checkout')->middleware('auth');
 
 Route::resource('orders', 'OrderController')->middleware('auth');
+
+Route::get('paypal/checkout', 'PaypalControler@getExpressCheckout');
+
+Route::get('paypal/checkout-success', 'PaypalControler@getExpressCheckoutSuccess');
+
 
